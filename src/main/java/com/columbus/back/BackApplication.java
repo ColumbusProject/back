@@ -7,9 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BackApplication {
 
 	public static void main(String[] args) {
-		// 주석
-		// 아린 주석
-		// 정봉 주석
 		SpringApplication.run(BackApplication.class, args);
 	}
 
