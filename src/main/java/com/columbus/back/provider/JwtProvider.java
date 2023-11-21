@@ -17,18 +17,19 @@ public class JwtProvider {
   @Value("${secret-key}")
   private String secretKey;
 
-  public String create(String email) {
-    Date expiration = Date.from(Instant.now().plus(5, ChronoUnit.HOURS));
+  public String create(String userId) {
+    Date expiration = Date.from(Instant.now().plus(1, ChronoUnit.HOURS));
 
     String jwt = Jwts.builder()
                     .signWith(SignatureAlgorithm.HS256, secretKey)
-                    .setSubject(email).setIssuedAt(new Date()).setExpiration(expiration)
+                    .setSubject(userId).setIssuedAt(new Date()).setExpiration(expiration)
                     .compact();
     return jwt;
   }
 
   public String validate(String jwt) {
-    String email = null;
+    
+    String userId = null;
 
     try {
       
@@ -37,14 +38,14 @@ public class JwtProvider {
                           .parseClaimsJws(jwt)
                           .getBody();
               
-      email = claims.getSubject();
+      userId = claims.getSubject();
 
     } catch (Exception exception) {
         exception.printStackTrace();
         return null;
     }
 
-    return email;
+    return userId;
 
   }
 }
