@@ -1,6 +1,6 @@
 package com.columbus.back.common;
 
-public class ResponseMessage {
+public interface ResponseMessage {
   
     // HTTP status 200
     String SUCCESS = "Success.";

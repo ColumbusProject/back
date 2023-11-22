@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.columbus.back.dto.request.board.PostBoardRequestDto;
 import com.columbus.back.dto.response.ResponseDto;
+import com.columbus.back.dto.response.board.GetBoardResponseDto;
 import com.columbus.back.dto.response.board.PostBoardResponseDto;
 import com.columbus.back.entity.BoardEntity;
 import com.columbus.back.entity.ImageEntity;
 import com.columbus.back.repository.BoardRepository;
 import com.columbus.back.repository.ImageRepository;
 import com.columbus.back.repository.UserRepository;
+import com.columbus.back.repository.resultSet.GetBoardResultSet;
 import com.columbus.back.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,32 @@ public class BoardServiceImplement implements BoardService {
     private final UserRepository userRepository;
     private final BoardRepository boardRepository;
     private final ImageRepository imageRepository;
+
+    @Override
+    public ResponseEntity<? super GetBoardResponseDto> getBoard(Integer boardNumber) {
+
+        GetBoardResultSet resultSet = null;
+        List<ImageEntity> imageEntities = new ArrayList<>();
+        
+        try {
+            
+            resultSet = boardRepository.getBoard(boardNumber);
+            if (resultSet == null) return GetBoardResponseDto.notExistBoard();
+
+            imageEntities = imageRepository.findByBoardNumber(boardNumber);
+
+            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            boardEntity.increaseViewCount();
+            boardRepository.save(boardEntity);
+
+        } catch(Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return GetBoardResponseDto.success(resultSet, imageEntities);
+
+    }
     
     @Override
     public ResponseEntity<? super PostBoardResponseDto> postBoard(PostBoardRequestDto dto, String email) {
