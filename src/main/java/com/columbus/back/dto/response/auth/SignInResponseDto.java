@@ -7,24 +7,22 @@ import com.columbus.back.dto.response.ResponseCode;
 import com.columbus.back.dto.response.ResponseDto;
 import com.columbus.back.dto.response.ResponseMessage;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public class SignInResponseDto extends ResponseDto {
   
   private String token;
   private int expirationTime;
 
-  private SignInResponseDto (String code, String message, String token) {
-    super(code, message);
+  private SignInResponseDto (String token) {
+    super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
     this.token = token;
     this.expirationTime = 3600;
   }
 
   public static ResponseEntity<SignInResponseDto> success(String token) {
-    SignInResponseDto result = new SignInResponseDto(ResponseCode.SUCCESS, ResponseMessage.SUCCESS, token);
+    SignInResponseDto result = new SignInResponseDto(token);
     return ResponseEntity.status(HttpStatus.OK).body(result);
   }
 

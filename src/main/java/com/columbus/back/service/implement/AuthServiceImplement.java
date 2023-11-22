@@ -37,7 +37,7 @@ public class AuthServiceImplement implements AuthService {
         String telNumber = dto.getTelNumber();
 
         boolean hasUserId = userRepository.existsById(userId);
-        if (hasUserId) return SignUpResponseDto.duplicateId();
+        if (hasUserId) return SignUpResponseDto.duplicateUserId();
 
         boolean hasNickname = userRepository.existsByNickname(nickname);
         if (hasNickname) return SignUpResponseDto.duplicateNickname();
