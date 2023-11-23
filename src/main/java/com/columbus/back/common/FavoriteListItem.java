@@ -18,7 +18,7 @@ public class FavoriteListItem {
     public FavoriteListItem(UserEntity userEntity) {
         this.userId = userEntity.getUserId();
         this.nickname = userEntity.getNickname();
-        this.profileImage = userEntity.getProfileImageUrl();
+        this.profileImage = userEntity.getProfileImage();
 
     }
 
