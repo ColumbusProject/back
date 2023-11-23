@@ -32,7 +32,7 @@ public class BoardEntity {
     private int viewCount;
     private int commentCount;
     private int favoriteCount;
-    private String writerEmail;
+    private String userId;
 
     public BoardEntity(PostBoardRequestDto dto, String email) {
         Date now = Date.from(Instant.now());
@@ -45,7 +45,7 @@ public class BoardEntity {
         this.viewCount = 0;
         this.commentCount = 0;
         this.favoriteCount = 0;
-        this.writerEmail = email;
+        this.userId = userId;
     }
 
     public void patch(PatchBoardRequestDto dto) {

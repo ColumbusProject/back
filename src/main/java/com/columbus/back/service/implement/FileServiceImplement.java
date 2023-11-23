@@ -9,8 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.util.UUID;
 
-import javax.el.ELException;
-
 import com.columbus.back.service.FileService;
 
 @Service
