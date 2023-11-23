@@ -3,9 +3,9 @@ package com.columbus.back.dto.response.board;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.columbus.back.common.ResponseCode;
-import com.columbus.back.common.ResponseMessage;
+import com.columbus.back.dto.response.ResponseCode;
 import com.columbus.back.dto.response.ResponseDto;
+import com.columbus.back.dto.response.ResponseMessage;
 
 public class PutFavoriteResponseDto extends ResponseDto {
 
@@ -19,12 +19,12 @@ public class PutFavoriteResponseDto extends ResponseDto {
     }
 
     public static ResponseEntity<ResponseDto> noExistBoard() {
-        ResponseDto result = new ResponseDto(ResponseCode.NOT_EXISTED_BOARD, ResponseMessage.NOT_EXISTED_BOARD);
+        ResponseDto result = new ResponseDto(ResponseCode.NOT_EXIST_BOARD, ResponseMessage.NOT_EXIST_BOARD);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
     }
 
     public static ResponseEntity<ResponseDto> noExistUser() {
-        ResponseDto result = new ResponseDto(ResponseCode.NOT_EXISTED_USER, ResponseMessage.NOT_EXISTED_USER);
+        ResponseDto result = new ResponseDto(ResponseCode.NOT_EXIST_USER, ResponseMessage.NOT_EXIST_USER);
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(result);
     }
     
