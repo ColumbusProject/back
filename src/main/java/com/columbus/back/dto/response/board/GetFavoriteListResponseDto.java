@@ -6,9 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.columbus.back.common.FavoriteListItem;
-import com.columbus.back.common.ResponseCode;
-import com.columbus.back.common.ResponseMessage;
+import com.columbus.back.dto.response.ResponseCode;
 import com.columbus.back.dto.response.ResponseDto;
+import com.columbus.back.dto.response.ResponseMessage;
 
 import lombok.Getter;
 
@@ -27,7 +27,7 @@ public class GetFavoriteListResponseDto extends ResponseDto {
     }
 
     public static ResponseEntity<ResponseDto> noExistBoard() {
-        ResponseDto result = new ResponseDto(ResponseCode.NOT_EXISTED_BOARD, ResponseMessage.NOT_EXISTED_BOARD);
+        ResponseDto result = new ResponseDto(ResponseCode.NOT_EXIST_BOARD, ResponseMessage.NOT_EXIST_BOARD);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
     }
 
