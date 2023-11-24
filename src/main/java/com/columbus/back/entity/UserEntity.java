@@ -23,13 +23,13 @@ public class UserEntity {
   private String email;
   private String telNumber;
   private String profileText;
-  private String profileImageUrl;
+  private String profileImage;
   
   public UserEntity(SignUpRequestDto dto) {
     this.userId = dto.getUserId();
     this.password = dto.getPassword();
     this.nickname = dto.getNickname();
-    this.userId = dto.getUserId();
+    this.email = dto.getEmail();
     this.telNumber = dto.getTelNumber();
   }
 }
