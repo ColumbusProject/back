@@ -3,7 +3,6 @@ package com.columbus.back.common;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.columbus.back.entity.UserEntity;
 import com.columbus.back.repository.resultSet.GetFavoriteListResultSet;
 
 import lombok.Getter;
