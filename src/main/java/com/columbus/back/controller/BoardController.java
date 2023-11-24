@@ -2,6 +2,7 @@ package com.columbus.back.controller;
 
 import javax.validation.Valid;
 
+import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.columbus.back.dto.request.board.PostBoardRequestDto;
+import com.columbus.back.dto.request.board.PostCommentRequestDto;
 import com.columbus.back.dto.response.board.GetBoardResponseDto;
 import com.columbus.back.dto.response.board.GetFavoriteListResponseDto;
 import com.columbus.back.dto.response.board.PostBoardResponseDto;
+import com.columbus.back.dto.response.board.PostCommentResponseDto;
 import com.columbus.back.dto.response.board.PutFavoriteResponseDto;
 import com.columbus.back.service.BoardService;
 
@@ -51,6 +54,16 @@ public class BoardController {
     ) {
         ResponseEntity<? super PostBoardResponseDto> response = boardService.postBoard(requestBody, email);
         return response;
+    }
+
+    @PostMapping("/{boardNumnber}/comment")
+    public ResponseEntity<? super PostCommentResponseDto> postComment(
+        @RequestBody @Valid PostCommentRequestDto requestBody,
+        @PathVariable("boardNumber") Integer boardNumber,
+        @AuthenticationPrincipal String userId
+    ){
+        ResponseEntity<? super PostCommentResponseDto> response = boardService.postComment(requestBody, boardNumber, userId);
+        return response; 
     }
 
     @PutMapping("/{boardNumber}/favorite")

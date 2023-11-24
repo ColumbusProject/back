@@ -122,13 +122,17 @@ public class BoardServiceImplement implements BoardService {
 
         try {
 
-            boolean existedBoard = boardRepository.existsByBoardNumber(boardNumber);
-            if (!existedBoard) return PostCommentResponseDto.noExistBoard();
+            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            if (boardEntity == null) return PostCommentResponseDto.noExistBoard();
 
             boolean existedUser = userRepository.existsByUserId(userId);
             if (!existedUser) return PostCommentResponseDto.noExistUser();
 
-            CommentEntity CommentEntity = new CommentEntity(dto, boardNumber, userId);
+            CommentEntity commentEntity = new CommentEntity(dto, boardNumber, userId);
+            commentRepository.save(commentEntity);
+
+            boardEntity.increaseCommentCount();
+            boardRepository.save(boardEntity);
 
         } catch(Exception exception) {
             exception.printStackTrace();
