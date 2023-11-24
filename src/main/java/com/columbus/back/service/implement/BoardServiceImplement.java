@@ -20,6 +20,7 @@ import com.columbus.back.repository.FavoriteRepository;
 import com.columbus.back.repository.ImageRepository;
 import com.columbus.back.repository.UserRepository;
 import com.columbus.back.repository.resultSet.GetBoardResultSet;
+import com.columbus.back.repository.resultSet.GetFavoriteListResultSet;
 import com.columbus.back.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -61,15 +62,22 @@ public class BoardServiceImplement implements BoardService {
 
     @Override
     public ResponseEntity<? super GetFavoriteListResponseDto> getFavoriteList(Integer boardNumber) {
+
+        List<GetFavoriteListResultSet> resultSets = new ArrayList<>();
         
         try {
+
+            boolean existedBoard = boardRepository.existsByBoardNumber(boardNumber);
+            if (!existedBoard) return GetFavoriteListResponseDto.noExistBoard();
+
+            resultSets = favoriteRepository.getFavoriteList(boardNumber);
 
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
 
-        return GetFavoriteListResponseDto.success();
+        return GetFavoriteListResponseDto.success(resultSets);
 
     }
     

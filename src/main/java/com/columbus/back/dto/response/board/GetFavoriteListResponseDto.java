@@ -9,6 +9,7 @@ import com.columbus.back.common.FavoriteListItem;
 import com.columbus.back.dto.response.ResponseCode;
 import com.columbus.back.dto.response.ResponseDto;
 import com.columbus.back.dto.response.ResponseMessage;
+import com.columbus.back.repository.resultSet.GetFavoriteListResultSet;
 
 import lombok.Getter;
 
@@ -17,12 +18,13 @@ public class GetFavoriteListResponseDto extends ResponseDto {
     
     private List<FavoriteListItem> favoriteList;
 
-    private GetFavoriteListResponseDto() {
+    private GetFavoriteListResponseDto(List<GetFavoriteListResultSet> resultSets) {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+        this.favoriteList = FavoriteListItem.copyList(resultSets);
     }
 
-    public static ResponseEntity<GetFavoriteListResponseDto> success() {
-        GetFavoriteListResponseDto result = new GetFavoriteListResponseDto();
+    public static ResponseEntity<GetFavoriteListResponseDto> success(List<GetFavoriteListResultSet> resultSets) {
+        GetFavoriteListResponseDto result = new GetFavoriteListResponseDto(resultSets);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
