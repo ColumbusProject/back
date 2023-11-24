@@ -30,6 +30,5 @@ public class SignUpRequestDto {
   @NotBlank @Pattern(regexp = "^[0-9]{11,13}$")
   private String telNumber;
 
-  @NotBlank
   private String profileImage;
 }
