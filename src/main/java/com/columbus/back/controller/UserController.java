@@ -12,7 +12,7 @@ import com.columbus.back.service.UserService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/columbus/api/user")
 @RequiredArgsConstructor
 public class UserController {
 

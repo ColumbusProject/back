@@ -17,6 +17,7 @@ public class GetSignInUserResponseDto extends ResponseDto {
 
   private GetSignInUserResponseDto(UserEntity userEntity) {
     super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+    
     this.userId = userEntity.getUserId();
     this.nickname = userEntity.getNickname();
     this.profileImage = userEntity.getProfileImage();
