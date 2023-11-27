@@ -3,6 +3,8 @@ package com.columbus.back.service.implement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.el.ELException;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.columbus.back.dto.request.board.PostBoardRequestDto;
 import com.columbus.back.dto.request.board.PostCommentRequestDto;
 import com.columbus.back.dto.response.ResponseDto;
 import com.columbus.back.dto.response.board.GetBoardResponseDto;
+import com.columbus.back.dto.response.board.GetCommentListResponseDto;
 import com.columbus.back.dto.response.board.GetFavoriteListResponseDto;
 import com.columbus.back.dto.response.board.PostBoardResponseDto;
 import com.columbus.back.dto.response.board.PostCommentResponseDto;
@@ -24,6 +27,7 @@ import com.columbus.back.repository.FavoriteRepository;
 import com.columbus.back.repository.ImageRepository;
 import com.columbus.back.repository.UserRepository;
 import com.columbus.back.repository.resultSet.GetBoardResultSet;
+import com.columbus.back.repository.resultSet.GetCommentListResultSet;
 import com.columbus.back.repository.resultSet.GetFavoriteListResultSet;
 import com.columbus.back.service.BoardService;
 
@@ -86,6 +90,26 @@ public class BoardServiceImplement implements BoardService {
 
     }
     
+    @Override
+    public ResponseEntity<? super GetCommentListResponseDto> getCommentList(Integer boardNumer) {
+
+        List<GetCommentListResultSet> resultSets = new ArrayList<>();
+        
+        try {
+
+            boolean existedBoard = boardRepository.existsByBoardNumber(boardNumer);
+            if (!existedBoard) return GetCommentListResponseDto.noExistBoard();
+
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return GetCommentListResponseDto.success(resultSets);
+
+    }
+
     @Override
     public ResponseEntity<? super PostBoardResponseDto> postBoard(PostBoardRequestDto dto, String userId) {
 
@@ -176,6 +200,7 @@ public class BoardServiceImplement implements BoardService {
 
     }
 
+    
     
     
 
