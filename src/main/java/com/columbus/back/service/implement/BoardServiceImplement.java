@@ -135,6 +135,8 @@ public class BoardServiceImplement implements BoardService {
             }
             imageRepository.saveAll(imageEntities);
 
+            ReviewLocationEntity reviewLocationEntity = new ReviewLocationEntity(boardNumber, reviewLocation);
+
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
@@ -203,7 +205,6 @@ public class BoardServiceImplement implements BoardService {
 
     }
 
-    
     
     
 
