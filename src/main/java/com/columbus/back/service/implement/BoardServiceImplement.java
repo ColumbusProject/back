@@ -99,7 +99,7 @@ public class BoardServiceImplement implements BoardService {
 
             boolean existedBoard = boardRepository.existsByBoardNumber(boardNumer);
             if (!existedBoard) return GetCommentListResponseDto.noExistBoard();
-
+            
 
         } catch (Exception exception) {
             exception.printStackTrace();
