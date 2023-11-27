@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "board")
-@Table(name = "board")
+@Entity(name = "travel_review")
+@Table(name = "travel_review")
 public class BoardEntity {
     
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -34,7 +34,7 @@ public class BoardEntity {
     private int favoriteCount;
     private String userId;
 
-    public BoardEntity(PostBoardRequestDto dto, String email) {
+    public BoardEntity(PostBoardRequestDto dto, String userId) {
         Date now = Date.from(Instant.now());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String writeDatetime = simpleDateFormat.format(now);
