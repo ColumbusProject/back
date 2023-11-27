@@ -1,6 +1,5 @@
 package com.columbus.back.repository;
 
-import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -10,7 +9,7 @@ import com.columbus.back.entity.ReviewLocationEntity;
 
 public interface ReviewLocationRepository extends JpaRepository<ReviewLocationEntity, Integer> {
     
-    List<ReviewLocationEntity> findByBoardNumber(Integer boardNumber);
+    ReviewLocationEntity findByBoardNumber(Integer boardNumber);
 
     @Transactional
     void deleteByBoardNumber(Integer boardNumber);
