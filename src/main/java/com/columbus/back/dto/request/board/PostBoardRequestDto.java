@@ -21,6 +21,6 @@ public class PostBoardRequestDto {
     @NotNull
     private List<String> boardImageList;
     @NotNull
-    private List<String> reviewLocation;
+    private String reviewLocation;
 
 }
