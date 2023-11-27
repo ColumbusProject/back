@@ -21,10 +21,12 @@ import com.columbus.back.entity.BoardEntity;
 import com.columbus.back.entity.CommentEntity;
 import com.columbus.back.entity.FavoriteEntity;
 import com.columbus.back.entity.ImageEntity;
+import com.columbus.back.entity.ReviewLocationEntity;
 import com.columbus.back.repository.BoardRepository;
 import com.columbus.back.repository.CommentRepository;
 import com.columbus.back.repository.FavoriteRepository;
 import com.columbus.back.repository.ImageRepository;
+import com.columbus.back.repository.ReviewLocationRepository;
 import com.columbus.back.repository.UserRepository;
 import com.columbus.back.repository.resultSet.GetBoardResultSet;
 import com.columbus.back.repository.resultSet.GetCommentListResultSet;
@@ -36,7 +38,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class BoardServiceImplement implements BoardService {
-
+    
     private final UserRepository userRepository;
     private final BoardRepository boardRepository;
     private final ImageRepository imageRepository;
