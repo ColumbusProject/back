@@ -38,12 +38,13 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class BoardServiceImplement implements BoardService {
-    
+
     private final UserRepository userRepository;
     private final BoardRepository boardRepository;
     private final ImageRepository imageRepository;
     private final CommentRepository commentRepository;
     private final FavoriteRepository favoriteRepository;
+    private final ReviewLocationRepository reviewLocationRepository;
 
     @Override
     public ResponseEntity<? super GetBoardResponseDto> getBoard(Integer boardNumber) {
@@ -117,8 +118,8 @@ public class BoardServiceImplement implements BoardService {
 
         try {
 
-            boolean existedEmail = userRepository.existsByUserId(userId);
-            if(!existedEmail) return PostBoardResponseDto.notExistUser();
+            boolean existedUserId = userRepository.existsByUserId(userId);
+            if(!existedUserId) return PostBoardResponseDto.notExistUser();
             
             BoardEntity boardEntity = new BoardEntity(dto, userId);
             boardRepository.save(boardEntity);
