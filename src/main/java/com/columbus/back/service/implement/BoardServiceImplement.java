@@ -135,7 +135,10 @@ public class BoardServiceImplement implements BoardService {
             }
             imageRepository.saveAll(imageEntities);
 
+            String reviewLocation = dto.getReviewLocation();
+
             ReviewLocationEntity reviewLocationEntity = new ReviewLocationEntity(boardNumber, reviewLocation);
+            reviewLocationRepository.save(reviewLocationEntity);
 
         } catch (Exception exception) {
             exception.printStackTrace();
