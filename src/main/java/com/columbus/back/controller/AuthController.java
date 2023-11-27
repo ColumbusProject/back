@@ -17,7 +17,7 @@ import com.columbus.back.service.AuthService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("columbus/api/auth")
+@RequestMapping("/columbus/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
 

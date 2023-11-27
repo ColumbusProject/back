@@ -24,7 +24,7 @@ import com.columbus.back.service.BoardService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/columbus/api/board/itinerary/write")
+@RequestMapping("columbus/api/board/review/write")
 @RequiredArgsConstructor
 public class BoardController {
     
