@@ -20,5 +20,7 @@ public class PostBoardRequestDto {
     private String content;
     @NotNull
     private List<String> boardImageList;
+    @NotNull
+    private List<String> reviewLocation;
 
 }
