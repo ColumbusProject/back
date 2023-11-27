@@ -8,6 +8,9 @@ import com.columbus.back.dto.response.ResponseDto;
 import com.columbus.back.dto.response.ResponseMessage;
 import com.columbus.back.entity.UserEntity;
 
+import lombok.Getter;
+
+@Getter
 public class GetSignInUserResponseDto extends ResponseDto {
 
   private String userId;
