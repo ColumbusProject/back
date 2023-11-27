@@ -22,10 +22,10 @@ public class ReviewLocationEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int sequence;
     private int boardNumber;
-    private String reviewlocation;
+    private String reviewLocation;
 
     public ReviewLocationEntity(int boardNumber, String reviewLocation) {
         this.boardNumber = boardNumber;
-        this.reviewlocation = reviewLocation;
+        this.reviewLocation = reviewLocation;
     }
 }

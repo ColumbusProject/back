@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.columbus.back.entity.ReviewLocationEntity;
 
-public interface ReviewLocationRepository extends JpaRepository<ReviewLocationRepository, Integer> {
+public interface ReviewLocationRepository extends JpaRepository<ReviewLocationEntity, Integer> {
     
     List<ReviewLocationEntity> findByBoardNumber(Integer boardNumber);
 
