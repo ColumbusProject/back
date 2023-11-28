@@ -2,14 +2,13 @@ package com.columbus.back.repository;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.columbus.back.entity.CommentEntity;
 import com.columbus.back.repository.resultSet.CommentListResultSet;
+import com.columbus.back.repository.resultSet.GetCommentListResultSet;
 
 @Repository
 public interface CommentRepository extends JpaRepository<CommentEntity, Integer> {
@@ -24,12 +23,11 @@ public interface CommentRepository extends JpaRepository<CommentEntity, Integer>
         "FROM travel_review_comment AS C " +
         "INNER JOIN user AS U " +
         "ON C.writer_id = U.user_id " +
-        "WHERE C.review_number = 1 " +
+        "WHERE C.review_number = ?1 " +
         "ORDER BY write_datetime DESC; ",
         nativeQuery = true
     )
-    List<CommentListResultSet> findByCommentList(Integer boardNumber);
+    List<GetCommentListResultSet> getCommentList(Integer boardNumber);
 
-    @Transactional
-    void deleteByBoardNumber(Integer boardNumber);
+    
 }

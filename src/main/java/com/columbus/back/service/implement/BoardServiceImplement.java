@@ -96,15 +96,16 @@ public class BoardServiceImplement implements BoardService {
     }
     
     @Override
-    public ResponseEntity<? super GetCommentListResponseDto> getCommentList(Integer boardNumer) {
+    public ResponseEntity<? super GetCommentListResponseDto> getCommentList(Integer boardNumber) {
 
         List<GetCommentListResultSet> resultSets = new ArrayList<>();
         
         try {
 
-            boolean existedBoard = boardRepository.existsByBoardNumber(boardNumer);
+            boolean existedBoard = boardRepository.existsByBoardNumber(boardNumber);
             if (!existedBoard) return GetCommentListResponseDto.noExistBoard();
-            
+
+            resultSets = commentRepository.getCommentList(boardNumber);
 
         } catch (Exception exception) {
             exception.printStackTrace();
