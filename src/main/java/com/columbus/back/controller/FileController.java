@@ -15,7 +15,7 @@ import com.columbus.back.service.FileService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/file")
+@RequestMapping("/columbus/file")
 @RequiredArgsConstructor
 public class FileController {
     

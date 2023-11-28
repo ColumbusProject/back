@@ -36,7 +36,7 @@ public class WebSecurityConfig {
       .httpBasic().disable()
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
       .authorizeRequests()
-      .antMatchers("/", "/columbus/api/auth/**").permitAll()
+      .antMatchers("/", "/columbus/api/auth/**", "/columbus/file/**").permitAll()
       .antMatchers(HttpMethod.GET, "/columbus/api/board/**", " /columbus/api/user/my-page/*").permitAll()
       .anyRequest().authenticated().and()
       .exceptionHandling().authenticationEntryPoint(new FailedAuthenticationEntryPoint());
