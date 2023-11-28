@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.columbus.back.dto.request.board.PostBoardRequestDto;
 import com.columbus.back.dto.request.board.PostCommentRequestDto;
 import com.columbus.back.dto.response.board.GetBoardResponseDto;
+import com.columbus.back.dto.response.board.GetCommentListResponseDto;
 import com.columbus.back.dto.response.board.GetFavoriteListResponseDto;
 import com.columbus.back.dto.response.board.PostBoardResponseDto;
 import com.columbus.back.dto.response.board.PostCommentResponseDto;
@@ -24,7 +25,7 @@ import com.columbus.back.service.BoardService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("columbus/api/board/review/write")
+@RequestMapping("columbus/api/board/review")
 @RequiredArgsConstructor
 public class BoardController {
     
@@ -43,6 +44,14 @@ public class BoardController {
         @PathVariable("boardNumber") Integer boardNumber
     ) {
         ResponseEntity<? super GetFavoriteListResponseDto> response = boardService.getFavoriteList(boardNumber);
+        return response;
+    }
+
+    @GetMapping("/{boardNumber}/comment-list")
+    public ResponseEntity<? super GetCommentListResponseDto> getCommentList(
+        @PathVariable("boardNumber") Integer boardNumber
+    ) {
+        ResponseEntity<? super GetCommentListResponseDto> response = boardService.getCommentList(boardNumber);
         return response;
     }
 
