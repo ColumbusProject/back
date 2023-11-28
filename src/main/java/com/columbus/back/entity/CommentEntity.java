@@ -19,18 +19,18 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "comment")
-@Table(name = "comment")
+@Entity(name = "travel_review_comment")
+@Table(name = "travel_review_comment")
 public class CommentEntity {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int commentNumber;
     private String content;
     private String writeDatetime;
-    private String userId;
-    private int boardNumber;
+    private String writerId;
+    private int reviewNumber;
 
-    public CommentEntity(PostCommentRequestDto dto, Integer boardNumber, String userId) {
+    public CommentEntity(PostCommentRequestDto dto, Integer reviewNumber, String userId) {
 
         Date now = Date.from(Instant.now());
         SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -38,7 +38,7 @@ public class CommentEntity {
 
         this.content = dto.getContent();
         this.writeDatetime = writeDatetime;
-        this.userId = userId;
-        this.boardNumber = boardNumber;
+        this.writerId = userId;
+        this.reviewNumber = reviewNumber;
     }
 }

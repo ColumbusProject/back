@@ -8,9 +8,9 @@ import com.columbus.back.repository.resultSet.GetBoardResultSet;
 
 public interface BoardRepository extends JpaRepository <BoardEntity, Integer> {
 
-    boolean existsByBoardNumber(Integer boardNumber);
+    boolean existsByReviewNumber(Integer reviewNumber);
 
-    BoardEntity findByBoardNumber(Integer boardNumber);
+    BoardEntity findByReviewNumber(Integer reviewNumber);
     
     @Query(
         value = 
@@ -28,6 +28,6 @@ public interface BoardRepository extends JpaRepository <BoardEntity, Integer> {
         "WHERE review_number = ?1; ",
         nativeQuery = true
     )
-    GetBoardResultSet getBoard(Integer boardNumber);
+    GetBoardResultSet getBoard(Integer reviewNumber);
     
 }

@@ -9,8 +9,8 @@ import com.columbus.back.entity.ReviewLocationEntity;
 
 public interface ReviewLocationRepository extends JpaRepository<ReviewLocationEntity, Integer> {
     
-    ReviewLocationEntity findByBoardNumber(Integer boardNumber);
+    ReviewLocationEntity findByReviewNumber(Integer reviewNumber);
 
     @Transactional
-    void deleteByBoardNumber(Integer boardNumber);
+    void deleteByReviewNumber(Integer reviewNumber);
 }

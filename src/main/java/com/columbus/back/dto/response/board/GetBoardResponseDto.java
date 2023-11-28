@@ -38,7 +38,7 @@ public class GetBoardResponseDto extends ResponseDto {
             boardImageList.add(boardImage);
         }
         
-        this.boardNumber = resultSet.getBoardNumber();
+        this.boardNumber = resultSet.getReviewNumber();
         this.title = resultSet.getTitle();
         this.content = resultSet.getContent();
         this.boardImageList = boardImageList;
@@ -47,7 +47,7 @@ public class GetBoardResponseDto extends ResponseDto {
         this.writerNickname = resultSet.getWriterNickname();
         this.writerProfileImage = resultSet.getWriterProfileImage();
 
-        this.reviewLocation = reviewLocationEntity.getReviewLocation();
+        this.reviewLocation = reviewLocationEntity.getLocation();
     }
 
     public static ResponseEntity<GetBoardResponseDto> success(GetBoardResultSet resultSet, List<ImageEntity> imageEntities, ReviewLocationEntity reviewLocationEntity) {

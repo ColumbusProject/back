@@ -5,5 +5,5 @@ public interface GetFavoriteListResultSet {
     String getProfileImage();
     Integer getFavorite();
     String getUserId();
-    Integer getBoardNumber();
+    Integer getReviewNumber();
 }
