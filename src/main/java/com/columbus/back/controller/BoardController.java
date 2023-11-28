@@ -55,7 +55,7 @@ public class BoardController {
         return response;
     }
 
-    @PostMapping("")
+    @PostMapping("/write")
     public ResponseEntity<? super PostBoardResponseDto> postBoard(
         @RequestBody @Valid PostBoardRequestDto requestBody,
         @AuthenticationPrincipal String userId
