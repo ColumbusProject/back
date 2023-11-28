@@ -4,6 +4,7 @@ import com.columbus.back.dto.response.ResponseCode;
 import com.columbus.back.dto.response.ResponseDto;
 import com.columbus.back.dto.response.ResponseMessage;
 import com.columbus.back.entity.ImageEntity;
+import com.columbus.back.entity.ReviewLocationEntity;
 import com.columbus.back.repository.resultSet.GetBoardResultSet;
 
 import lombok.Getter;
@@ -25,8 +26,9 @@ public class GetBoardResponseDto extends ResponseDto {
     private String writerNickname;
     private String writerProfileImage;
     private String title;
+    private String reviewLocation;
     
-    private GetBoardResponseDto(GetBoardResultSet resultSet, List<ImageEntity> imageEntities) {
+    private GetBoardResponseDto(GetBoardResultSet resultSet, List<ImageEntity> imageEntities, ReviewLocationEntity reviewLocationEntity) {
 
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
 
@@ -44,10 +46,12 @@ public class GetBoardResponseDto extends ResponseDto {
         this.userId = resultSet.getUserId();
         this.writerNickname = resultSet.getWriterNickname();
         this.writerProfileImage = resultSet.getWriterProfileImage();
+
+        this.reviewLocation = reviewLocationEntity.getReviewLocation();
     }
 
-    public static ResponseEntity<GetBoardResponseDto> success(GetBoardResultSet resultSet, List<ImageEntity> imageEntities) {
-        GetBoardResponseDto result = new GetBoardResponseDto(resultSet, imageEntities);
+    public static ResponseEntity<GetBoardResponseDto> success(GetBoardResultSet resultSet, List<ImageEntity> imageEntities, ReviewLocationEntity reviewLocationEntity) {
+        GetBoardResponseDto result = new GetBoardResponseDto(resultSet, imageEntities, reviewLocationEntity);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.columbus.back.entity.CommentEntity;
 import com.columbus.back.repository.resultSet.CommentListResultSet;
+import com.columbus.back.repository.resultSet.GetCommentListResultSet;
 
 @Repository
 public interface CommentRepository extends JpaRepository<CommentEntity, Integer> {
@@ -26,7 +27,7 @@ public interface CommentRepository extends JpaRepository<CommentEntity, Integer>
         "ORDER BY write_datetime DESC; ",
         nativeQuery = true
     )
-    List<CommentListResultSet> getCommentList(Integer boardNumber);
+    List<GetCommentListResultSet> getCommentList(Integer boardNumber);
 
     
 }

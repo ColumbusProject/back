@@ -51,6 +51,7 @@ public class BoardServiceImplement implements BoardService {
 
         GetBoardResultSet resultSet = null;
         List<ImageEntity> imageEntities = new ArrayList<>();
+        ReviewLocationEntity reviewLocationEntity = null;
         
         try {
             
@@ -58,6 +59,7 @@ public class BoardServiceImplement implements BoardService {
             if (resultSet == null) return GetBoardResponseDto.notExistBoard();
 
             imageEntities = imageRepository.findByBoardNumber(boardNumber);
+            reviewLocationEntity = reviewLocationRepository.findByBoardNumber(boardNumber);
 
             BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
             boardEntity.increaseViewCount();
@@ -68,7 +70,7 @@ public class BoardServiceImplement implements BoardService {
             return ResponseDto.databaseError();
         }
 
-        return GetBoardResponseDto.success(resultSet, imageEntities);
+        return GetBoardResponseDto.success(resultSet, imageEntities, reviewLocationEntity);
 
     }
 
