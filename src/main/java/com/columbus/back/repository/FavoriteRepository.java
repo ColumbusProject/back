@@ -13,7 +13,7 @@ import com.columbus.back.repository.resultSet.GetFavoriteListResultSet;
 @Repository
 public interface FavoriteRepository extends JpaRepository<FavoriteEntity, FavoritePk> {
 
-    FavoriteEntity findByBoardNumberAndUserId(Integer boardNumber, String userId);
+    FavoriteEntity findByReviewNumberAndUserId(Integer ReviewNumber, String userId);
 
     @Query(
         value = 
@@ -26,5 +26,5 @@ public interface FavoriteRepository extends JpaRepository<FavoriteEntity, Favori
         "WHERE F.review_number = ?1",
         nativeQuery = true
     )
-    List<GetFavoriteListResultSet> getFavoriteList(Integer boardNumber); 
+    List<GetFavoriteListResultSet> getFavoriteList(Integer ReviewNumber); 
 }

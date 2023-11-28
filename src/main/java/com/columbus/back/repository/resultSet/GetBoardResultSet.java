@@ -1,7 +1,7 @@
 package com.columbus.back.repository.resultSet;
 
 public interface GetBoardResultSet {
-    Integer getBoardNumber();
+    Integer getReviewNumber();
     String getTitle();
     String getContent();
     String getWriteDatetime();

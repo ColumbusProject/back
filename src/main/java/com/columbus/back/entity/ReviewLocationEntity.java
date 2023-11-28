@@ -21,11 +21,11 @@ public class ReviewLocationEntity {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int sequence;
-    private int boardNumber;
-    private String reviewLocation;
+    private int reviewNumber;
+    private String location;
 
-    public ReviewLocationEntity(int boardNumber, String reviewLocation) {
-        this.boardNumber = boardNumber;
-        this.reviewLocation = reviewLocation;
+    public ReviewLocationEntity(int reviewNumber, String reviewLocation) {
+        this.reviewNumber = reviewNumber;
+        this.location = reviewLocation;
     }
 }

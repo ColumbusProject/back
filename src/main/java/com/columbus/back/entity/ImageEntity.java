@@ -19,12 +19,12 @@ public class ImageEntity {
     
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int sequence;
-    private int boardNumber;
+    private int reviewNumber;
     private String image;
 
 
-    public ImageEntity(int boardNumber, String image) {
-        this.boardNumber = boardNumber;
+    public ImageEntity(int reviewNumber, String image) {
+        this.reviewNumber = reviewNumber;
         this.image = image;
     }
 }

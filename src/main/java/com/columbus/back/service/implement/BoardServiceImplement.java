@@ -47,7 +47,7 @@ public class BoardServiceImplement implements BoardService {
     private final ReviewLocationRepository reviewLocationRepository;
 
     @Override
-    public ResponseEntity<? super GetBoardResponseDto> getBoard(Integer boardNumber) {
+    public ResponseEntity<? super GetBoardResponseDto> getBoard(Integer reviewNumber) {
 
         GetBoardResultSet resultSet = null;
         List<ImageEntity> imageEntities = new ArrayList<>();
@@ -55,13 +55,13 @@ public class BoardServiceImplement implements BoardService {
         
         try {
             
-            resultSet = boardRepository.getBoard(boardNumber);
+            resultSet = boardRepository.getBoard(reviewNumber);
             if (resultSet == null) return GetBoardResponseDto.notExistBoard();
 
-            imageEntities = imageRepository.findByBoardNumber(boardNumber);
-            reviewLocationEntity = reviewLocationRepository.findByBoardNumber(boardNumber);
+            imageEntities = imageRepository.findByReviewNumber(reviewNumber);
+            reviewLocationEntity = reviewLocationRepository.findByReviewNumber(reviewNumber);
 
-            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            BoardEntity boardEntity = boardRepository.findByReviewNumber(reviewNumber);
             boardEntity.increaseViewCount();
             boardRepository.save(boardEntity);
 
@@ -75,16 +75,16 @@ public class BoardServiceImplement implements BoardService {
     }
 
     @Override
-    public ResponseEntity<? super GetFavoriteListResponseDto> getFavoriteList(Integer boardNumber) {
+    public ResponseEntity<? super GetFavoriteListResponseDto> getFavoriteList(Integer reviewNumber) {
 
         List<GetFavoriteListResultSet> resultSets = new ArrayList<>();
         
         try {
 
-            boolean existedBoard = boardRepository.existsByBoardNumber(boardNumber);
+            boolean existedBoard = boardRepository.existsByReviewNumber(reviewNumber);
             if (!existedBoard) return GetFavoriteListResponseDto.noExistBoard();
 
-            resultSets = favoriteRepository.getFavoriteList(boardNumber);
+            resultSets = favoriteRepository.getFavoriteList(reviewNumber);
 
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -96,16 +96,16 @@ public class BoardServiceImplement implements BoardService {
     }
     
     @Override
-    public ResponseEntity<? super GetCommentListResponseDto> getCommentList(Integer boardNumber) {
+    public ResponseEntity<? super GetCommentListResponseDto> getCommentList(Integer reviewNumber) {
 
         List<GetCommentListResultSet> resultSets = new ArrayList<>();
         
         try {
 
-            boolean existedBoard = boardRepository.existsByBoardNumber(boardNumber);
+            boolean existedBoard = boardRepository.existsByReviewNumber(reviewNumber);
             if (!existedBoard) return GetCommentListResponseDto.noExistBoard();
 
-            resultSets = commentRepository.getCommentList(boardNumber);
+            resultSets = commentRepository.getCommentList(reviewNumber);
 
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -127,20 +127,20 @@ public class BoardServiceImplement implements BoardService {
             BoardEntity boardEntity = new BoardEntity(dto, userId);
             boardRepository.save(boardEntity);
 
-            int boardNumber = boardEntity.getBoardNumber();
+            int reviewNumber = boardEntity.getReviewNumber();
 
             List<String> boardImageList = dto.getBoardImageList();
             List<ImageEntity> imageEntities = new ArrayList<>();
 
             for (String image: boardImageList) {
-                ImageEntity imageEntity = new ImageEntity(boardNumber, image);
+                ImageEntity imageEntity = new ImageEntity(reviewNumber, image);
                 imageEntities.add(imageEntity);
             }
             imageRepository.saveAll(imageEntities);
 
-            String reviewLocation = dto.getReviewLocation();
+            String reviewLocation = dto.getLocation();
 
-            ReviewLocationEntity reviewLocationEntity = new ReviewLocationEntity(boardNumber, reviewLocation);
+            ReviewLocationEntity reviewLocationEntity = new ReviewLocationEntity(reviewNumber, reviewLocation);
             reviewLocationRepository.save(reviewLocationEntity);
 
         } catch (Exception exception) {
@@ -153,17 +153,17 @@ public class BoardServiceImplement implements BoardService {
     }
 
     @Override
-    public ResponseEntity<? super PostCommentResponseDto> postComment(PostCommentRequestDto dto, Integer boardNumber, String userId) {
+    public ResponseEntity<? super PostCommentResponseDto> postComment(PostCommentRequestDto dto, Integer reviewNumber, String userId) {
 
         try {
 
-            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            BoardEntity boardEntity = boardRepository.findByReviewNumber(reviewNumber);
             if (boardEntity == null) return PostCommentResponseDto.noExistBoard();
 
             boolean existedUser = userRepository.existsByUserId(userId);
             if (!existedUser) return PostCommentResponseDto.noExistUser();
 
-            CommentEntity commentEntity = new CommentEntity(dto, boardNumber, userId);
+            CommentEntity commentEntity = new CommentEntity(dto, reviewNumber, userId);
             commentRepository.save(commentEntity);
 
             boardEntity.increaseCommentCount();
@@ -179,19 +179,19 @@ public class BoardServiceImplement implements BoardService {
     }
 
     @Override
-    public ResponseEntity<? super PutFavoriteResponseDto> putFavorite(Integer boardNumber, String userId) {
+    public ResponseEntity<? super PutFavoriteResponseDto> putFavorite(Integer reviewNumber, String userId) {
         
         try {
 
             boolean existedUser = userRepository.existsByUserId(userId);
             if (!existedUser) return PutFavoriteResponseDto.noExistUser();
 
-            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            BoardEntity boardEntity = boardRepository.findByReviewNumber(reviewNumber);
             if (boardEntity == null) return PutFavoriteResponseDto.noExistBoard();
 
-            FavoriteEntity favoriteEntity = favoriteRepository.findByBoardNumberAndUserId(boardNumber, userId);
+            FavoriteEntity favoriteEntity = favoriteRepository.findByReviewNumberAndUserId(reviewNumber, userId);
             if (favoriteEntity == null) {
-                favoriteEntity = new FavoriteEntity(userId, boardNumber);
+                favoriteEntity = new FavoriteEntity(userId, reviewNumber);
                 favoriteRepository.save(favoriteEntity);
                 boardEntity.increaseFavoriteCount();
             }

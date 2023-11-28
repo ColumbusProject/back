@@ -25,14 +25,14 @@ import lombok.NoArgsConstructor;
 public class BoardEntity {
     
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int boardNumber;
+    private int reviewNumber;
     private String title;
-    private String contents;
+    private String content;
     private String writeDatetime;
     private int viewCount;
     private int commentCount;
     private int favoriteCount;
-    private String userId;
+    private String writerId;
 
     public BoardEntity(PostBoardRequestDto dto, String userId) {
         Date now = Date.from(Instant.now());
@@ -40,17 +40,18 @@ public class BoardEntity {
         String writeDatetime = simpleDateFormat.format(now);
 
         this.title = dto.getTitle();
-        this.contents = dto.getContent();
+        this.content = dto.getContents();
         this.writeDatetime = writeDatetime;
         this.viewCount = 0;
         this.commentCount = 0;
         this.favoriteCount = 0;
+        this.writerId = userId;
         
     }
 
     public void patch(PatchBoardRequestDto dto) {
         this.title = dto.getTitle();
-        this.contents = dto.getContent();
+        this.content = dto.getContent();
     }
 
     public void increaseViewCount() {

@@ -17,10 +17,10 @@ public class PostBoardRequestDto {
     @NotBlank
     private String title;
     @NotBlank
-    private String content;
+    private String contents;
     @NotNull
     private List<String> boardImageList;
-    @NotNull
-    private String reviewLocation;
+    @NotBlank
+    private String location;
 
 }

@@ -14,12 +14,12 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "favorite")
-@Table(name = "favorite")
+@Entity(name = "travel_review_favorite")
+@Table(name = "travel_review_favorite")
 @IdClass(FavoritePk.class)
 public class FavoriteEntity {
     @Id
     private String userId;
     @Id
-    private int boardNumber;
+    private int reviewNumber;
 }

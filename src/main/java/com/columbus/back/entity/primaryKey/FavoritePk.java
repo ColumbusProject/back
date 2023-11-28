@@ -18,5 +18,5 @@ public class FavoritePk implements Serializable {
     @Column(name = "user_id")
     private String userId;
     @Column(name = "review_number")
-    private int boardNumber;
+    private int reviewNumber;
 }

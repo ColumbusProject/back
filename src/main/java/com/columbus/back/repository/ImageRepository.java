@@ -12,8 +12,8 @@ import com.columbus.back.entity.ImageEntity;
 @Repository
 public interface ImageRepository extends JpaRepository<ImageEntity, Integer> {
     
-    List<ImageEntity> findByBoardNumber(Integer boardNumber);
+    List<ImageEntity> findByReviewNumber(Integer reviewNumber);
 
     @Transactional
-    void deleteByBoardNumber(Integer boardNumber);
+    void deleteByReviewNumber(Integer reviewNumber);
 }
