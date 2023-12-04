@@ -1,16 +1,16 @@
-package com.columbus.back.repository;
+package com.columbus.back.repository.review;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.columbus.back.entity.BoardEntity;
-import com.columbus.back.repository.resultSet.GetBoardResultSet;
+import com.columbus.back.entity.review.ReviewBoardEntity;
+import com.columbus.back.repository.review.resultSet.GetReviewBoardResultSet;
 
-public interface BoardRepository extends JpaRepository <BoardEntity, Integer> {
+public interface ReviewBoardRepository extends JpaRepository <ReviewBoardEntity, Integer> {
 
     boolean existsByReviewNumber(Integer reviewNumber);
 
-    BoardEntity findByReviewNumber(Integer reviewNumber);
+    ReviewBoardEntity findByReviewNumber(Integer reviewNumber);
     
     @Query(
         value = 
@@ -28,6 +28,6 @@ public interface BoardRepository extends JpaRepository <BoardEntity, Integer> {
         "WHERE review_number = ?1; ",
         nativeQuery = true
     )
-    GetBoardResultSet getBoard(Integer reviewNumber);
+    GetReviewBoardResultSet getReviewBoard(Integer reviewNumber);
     
 }

@@ -1,6 +1,6 @@
-package com.columbus.back.repository.resultSet;
+package com.columbus.back.repository.review.resultSet;
 
-public interface GetFavoriteListResultSet {
+public interface GetReviewFavoriteListResultSet {
     String getNickname();
     String getProfileImage();
     Integer getFavorite();

@@ -1,4 +1,4 @@
-package com.columbus.back.entity;
+package com.columbus.back.entity.review;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -10,8 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.columbus.back.dto.request.board.PatchBoardRequestDto;
-import com.columbus.back.dto.request.board.PostBoardRequestDto;
+import com.columbus.back.dto.request.board.review.PatchReviewBoardRequestDto;
+import com.columbus.back.dto.request.board.review.PostReviewBoardRequestDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name = "travel_review")
 @Table(name = "travel_review")
-public class BoardEntity {
+public class ReviewBoardEntity {
     
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int reviewNumber;
@@ -34,7 +34,7 @@ public class BoardEntity {
     private int favoriteCount;
     private String writerId;
 
-    public BoardEntity(PostBoardRequestDto dto, String userId) {
+    public ReviewBoardEntity(PostReviewBoardRequestDto dto, String userId) {
         Date now = Date.from(Instant.now());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String writeDatetime = simpleDateFormat.format(now);
@@ -49,7 +49,7 @@ public class BoardEntity {
         
     }
 
-    public void patch(PatchBoardRequestDto dto) {
+    public void patch(PatchReviewBoardRequestDto dto) {
         this.title = dto.getTitle();
         this.content = dto.getContent();
     }

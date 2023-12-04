@@ -1,4 +1,4 @@
-package com.columbus.back.entity.primaryKey;
+package com.columbus.back.entity.review.primaryKey;
 
 import java.io.Serializable;
 
@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FavoritePk implements Serializable {
+public class ReviewFavoritePk implements Serializable {
     @Column(name = "user_id")
     private String userId;
     @Column(name = "review_number")

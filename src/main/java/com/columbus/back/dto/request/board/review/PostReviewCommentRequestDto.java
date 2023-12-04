@@ -1,4 +1,4 @@
-package com.columbus.back.dto.request.board;
+package com.columbus.back.dto.request.board.review;
 
 import javax.validation.constraints.NotBlank;
 
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PostCommentRequestDto {
+public class PostReviewCommentRequestDto {
 
     @NotBlank
     private String content;

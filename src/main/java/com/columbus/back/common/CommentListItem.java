@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import java.util.List;
-import java.util.ArrayList;
 
-import com.columbus.back.repository.resultSet.GetCommentListResultSet;
+import com.columbus.back.repository.review.resultSet.GetReviewCommentListResultSet;
+
+import java.util.ArrayList;
 
 @Getter
 @NoArgsConstructor
@@ -17,16 +18,16 @@ public class CommentListItem {
     private String writeDatetime;
     private String content;
 
-    public CommentListItem(GetCommentListResultSet resultSet) {
+    public CommentListItem(GetReviewCommentListResultSet resultSet) {
         this.nickname = resultSet.getNickname();
         this.profileImage = resultSet.getProfileImage();
         this.writeDatetime = resultSet.getWriteDatetime();
         this.content = resultSet.getContent();
     }
 
-    public static List<CommentListItem> copyList(List<GetCommentListResultSet> resultSets) {
+    public static List<CommentListItem> copyList(List<GetReviewCommentListResultSet> resultSets) {
         List<CommentListItem> list = new ArrayList<>();
-        for (GetCommentListResultSet resultSet: resultSets) {
+        for (GetReviewCommentListResultSet resultSet: resultSets) {
             CommentListItem commentListItem = new CommentListItem(resultSet);
             list.add(commentListItem);
         }

@@ -1,12 +1,10 @@
-package com.columbus.back.entity;
+package com.columbus.back.entity.review;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.springframework.beans.factory.parsing.Location;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
