@@ -1,6 +1,6 @@
-package com.columbus.back.repository.resultSet;
+package com.columbus.back.repository.review.resultSet;
 
-public interface GetBoardResultSet {
+public interface GetReviewBoardResultSet {
     Integer getReviewNumber();
     String getTitle();
     String getContent();

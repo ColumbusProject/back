@@ -3,7 +3,7 @@ package com.columbus.back.common;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.columbus.back.repository.resultSet.GetFavoriteListResultSet;
+import com.columbus.back.repository.review.resultSet.GetReviewFavoriteListResultSet;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,15 +15,15 @@ public class FavoriteListItem {
     private String nickname;
     private String profileImage;
 
-    public FavoriteListItem(GetFavoriteListResultSet resultSet) {
+    public FavoriteListItem(GetReviewFavoriteListResultSet resultSet) {
         this.userId = resultSet.getUserId();
         this.nickname = resultSet.getNickname();
         this.profileImage =resultSet.getProfileImage(); 
     }
 
-    public static List<FavoriteListItem> copyList(List<GetFavoriteListResultSet> resultSets) {
+    public static List<FavoriteListItem> copyList(List<GetReviewFavoriteListResultSet> resultSets) {
         List<FavoriteListItem> list = new ArrayList<>();
-        for (GetFavoriteListResultSet resultSet: resultSets) {
+        for (GetReviewFavoriteListResultSet resultSet: resultSets) {
             FavoriteListItem favoriteListItem = new FavoriteListItem(resultSet);
             list.add(favoriteListItem);
         }

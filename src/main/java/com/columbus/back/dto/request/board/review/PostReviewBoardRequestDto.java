@@ -1,4 +1,4 @@
-package com.columbus.back.dto.request.board;
+package com.columbus.back.dto.request.board.review;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PostBoardRequestDto {
+public class PostReviewBoardRequestDto {
     
     @NotBlank
     private String title;

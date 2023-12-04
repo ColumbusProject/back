@@ -1,6 +1,6 @@
-package com.columbus.back.repository.resultSet;
+package com.columbus.back.repository.review.resultSet;
 
-public interface GetCommentListResultSet {
+public interface GetReviewCommentListResultSet {
     String getNickname();
     String getProfileImage();
     String getWriteDatetime();

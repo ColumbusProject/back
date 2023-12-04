@@ -1,4 +1,4 @@
-package com.columbus.back.entity;
+package com.columbus.back.entity.review;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name="travel_review_image")
 @Table(name="travel_review_image")
-public class ImageEntity {
+public class ReviewImageEntity {
     
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int sequence;
@@ -23,7 +23,7 @@ public class ImageEntity {
     private String image;
 
 
-    public ImageEntity(int reviewNumber, String image) {
+    public ReviewImageEntity(int reviewNumber, String image) {
         this.reviewNumber = reviewNumber;
         this.image = image;
     }

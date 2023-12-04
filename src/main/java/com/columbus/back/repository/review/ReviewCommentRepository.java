@@ -1,4 +1,4 @@
-package com.columbus.back.repository;
+package com.columbus.back.repository.review;
 
 import java.util.List;
 
@@ -6,12 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.columbus.back.entity.CommentEntity;
-import com.columbus.back.repository.resultSet.CommentListResultSet;
-import com.columbus.back.repository.resultSet.GetCommentListResultSet;
+import com.columbus.back.entity.review.ReviewCommentEntity;
+import com.columbus.back.repository.review.resultSet.GetReviewCommentListResultSet;
 
 @Repository
-public interface CommentRepository extends JpaRepository<CommentEntity, Integer> {
+public interface ReviewCommentRepository extends JpaRepository<ReviewCommentEntity, Integer> {
     
     @Query(
         value = 
@@ -27,7 +26,7 @@ public interface CommentRepository extends JpaRepository<CommentEntity, Integer>
         "ORDER BY write_datetime DESC; ",
         nativeQuery = true
     )
-    List<GetCommentListResultSet> getCommentList(Integer reviewNumber);
+    List<GetReviewCommentListResultSet> getReviewCommentList(Integer reviewNumber);
 
     
 }

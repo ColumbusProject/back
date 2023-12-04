@@ -1,11 +1,11 @@
-package com.columbus.back.dto.response.board;
+package com.columbus.back.dto.response.board.review;
 
 import com.columbus.back.dto.response.ResponseCode;
 import com.columbus.back.dto.response.ResponseDto;
 import com.columbus.back.dto.response.ResponseMessage;
-import com.columbus.back.entity.ImageEntity;
-import com.columbus.back.entity.ReviewLocationEntity;
-import com.columbus.back.repository.resultSet.GetBoardResultSet;
+import com.columbus.back.entity.review.ReviewImageEntity;
+import com.columbus.back.entity.review.ReviewLocationEntity;
+import com.columbus.back.repository.review.resultSet.GetReviewBoardResultSet;
 
 import lombok.Getter;
 
@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 @Getter
-public class GetBoardResponseDto extends ResponseDto {
+public class GetReviewBoardResponseDto extends ResponseDto {
 
     private int boardNumber;
     private String content;
@@ -28,13 +28,13 @@ public class GetBoardResponseDto extends ResponseDto {
     private String title;
     private String reviewLocation;
     
-    private GetBoardResponseDto(GetBoardResultSet resultSet, List<ImageEntity> imageEntities, ReviewLocationEntity reviewLocationEntity) {
+    private GetReviewBoardResponseDto(GetReviewBoardResultSet resultSet, List<ReviewImageEntity> reviewImageEntities, ReviewLocationEntity reviewLocationEntity) {
 
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
 
         List<String> boardImageList = new ArrayList<>();
-        for (ImageEntity imageEntity: imageEntities) {
-            String boardImage = imageEntity.getImage();
+        for (ReviewImageEntity reviewImageEntity: reviewImageEntities) {
+            String boardImage = reviewImageEntity.getImage();
             boardImageList.add(boardImage);
         }
         
@@ -50,12 +50,12 @@ public class GetBoardResponseDto extends ResponseDto {
         this.reviewLocation = reviewLocationEntity.getLocation();
     }
 
-    public static ResponseEntity<GetBoardResponseDto> success(GetBoardResultSet resultSet, List<ImageEntity> imageEntities, ReviewLocationEntity reviewLocationEntity) {
-        GetBoardResponseDto result = new GetBoardResponseDto(resultSet, imageEntities, reviewLocationEntity);
+    public static ResponseEntity<GetReviewBoardResponseDto> success(GetReviewBoardResultSet resultSet, List<ReviewImageEntity> reviewImageEntities, ReviewLocationEntity reviewLocationEntity) {
+        GetReviewBoardResponseDto result = new GetReviewBoardResponseDto(resultSet, reviewImageEntities, reviewLocationEntity);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-    public static ResponseEntity<ResponseDto> notExistBoard() {
+    public static ResponseEntity<ResponseDto> notExistReviewBoard() {
         ResponseDto result = new ResponseDto(ResponseCode.NOT_EXIST_BOARD, ResponseMessage.NOT_EXIST_BOARD);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
     }

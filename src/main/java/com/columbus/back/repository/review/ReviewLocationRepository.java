@@ -1,11 +1,11 @@
-package com.columbus.back.repository;
+package com.columbus.back.repository.review;
 
 
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.columbus.back.entity.ReviewLocationEntity;
+import com.columbus.back.entity.review.ReviewLocationEntity;
 
 public interface ReviewLocationRepository extends JpaRepository<ReviewLocationEntity, Integer> {
     

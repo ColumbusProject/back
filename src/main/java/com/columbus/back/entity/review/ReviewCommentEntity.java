@@ -1,4 +1,4 @@
-package com.columbus.back.entity;
+package com.columbus.back.entity.review;
 
 import java.util.Date;
 import java.time.Instant;
@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.columbus.back.dto.request.board.PostCommentRequestDto;
+import com.columbus.back.dto.request.board.review.PostReviewCommentRequestDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name = "travel_review_comment")
 @Table(name = "travel_review_comment")
-public class CommentEntity {
+public class ReviewCommentEntity {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int commentNumber;
@@ -30,7 +30,7 @@ public class CommentEntity {
     private String writerId;
     private int reviewNumber;
 
-    public CommentEntity(PostCommentRequestDto dto, Integer reviewNumber, String userId) {
+    public ReviewCommentEntity(PostReviewCommentRequestDto dto, Integer reviewNumber, String userId) {
 
         Date now = Date.from(Instant.now());
         SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
